@@ -12,20 +12,20 @@ go
 -- CREATE TABLES --
 
 create table kunder (
-	kundenr int primary key not null,
+	kundenr int primary key identity not null,
 	navn varchar(50) not null,
 	adresse varchar (50) not null
 );
 
 create table ordre (
+	ordrenummer int primary key identity not null,
 	kundenr int constraint kundenrforeign foreign key references kunder not null,
-	ordrenummer int primary key not null,
 	dato date not null,
 	er_betalt bit default 0
 );
 
 create table vare (
-	varenummer int primary key not null,
+	varenummer int primary key identity not null,
 	varenavn varchar(25) not null,
 	pris decimal(7, 2) not null,
 	antal_paa_lager int default 0
@@ -42,16 +42,16 @@ go
 
 -- INSERTS --
 
-insert into vare values (1, 'Musli', 24.95, 25);
-insert into vare values (2, 'Cykel', 1995.95, 2);
-insert into vare values (3, 'Rugbrød', 14.95, 0);
-insert into vare values (4, 'Jasmin ris (500g)', 9.95, 0);
+insert into vare values ('Musli', 24.95, 25);
+insert into vare values ('Cykel', 1995.95, 2);
+insert into vare values ('Rugbrød', 14.95, 0);
+insert into vare values ('Jasmin ris (500g)', 9.95, 0);
 
-insert into kunder values (1, 'Lukas Knudsen', 'Risdalsvej 46');
-insert into kunder values (2, 'Berta Vazquez de Zubiaurre', 'Vinkenburgstraat 1');
+insert into kunder values ('Lukas Knudsen', 'Risdalsvej 46');
+insert into kunder values ('Berta Vazquez de Zubiaurre', 'Vinkenburgstraat 1');
 
-insert into ordre (kundenr, ordrenummer, dato) values (1, 1, '2022.02.09');
-insert into ordre (kundenr, ordrenummer, dato) values (2, 2, '2022.02.10');
+insert into ordre (kundenr, dato) values (1, '2022.02.09');
+insert into ordre (kundenr, dato) values (2, '2022.02.10');
 
 insert into ordrelinjer values (1, 5, 1);
 insert into ordrelinjer values (1, 1, 2);
