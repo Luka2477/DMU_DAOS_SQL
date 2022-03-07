@@ -8,7 +8,7 @@ create table rytter
 (
 init char(3) not null,
 rytternavn varchar(30),
-primary key (init),
+primary key (init)
 )
 
 create table vm
@@ -16,7 +16,7 @@ create table vm
 aarstal int not null,
 bynavn varchar(20),
 land varchar(20),
-primary key (aarstal),
+primary key (aarstal)
 )
 
 create table placering
@@ -25,8 +25,8 @@ aarstal int,
 init char(3),
 plac int,
 primary key (aarstal, init),
-foreign key (init) references rytter(init),
-foreign key (aarstal) references vm(aarstal),
+constraint rytter_constraint foreign key (init) references rytter(init),
+constraint vm_constraint foreign key (aarstal) references vm(aarstal)
 )
 
 insert into rytter values ('OR', 'Ole Ritter')
